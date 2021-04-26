@@ -1,0 +1,44 @@
+{
+  "extends": ["@react-native-community", "prettier", "eslint/recommended"],
+  "plugins": ["import"],
+  "rules": {
+    "prettier/prettier": "error",
+    "quotes": [
+      "error",
+      "double",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "max-len": ["error", 120],
+    "react-native/no-unused-styles": 2,
+    "react-native/split-platform-components": 2,
+    "react-native/no-inline-styles": 0,
+    "react-native/no-color-literals": 0,
+    "react-native/no-raw-text": 0,
+    "import/no-extraneous-dependencies": 2,
+    "import/extensions": ["error", "never", { "svg": "always" }],
+    "import/order": ["error", { "newlines-between": "always" }],
+    "import/no-duplicates": 2,
+    "import/no-useless-path-segments": 2,
+    "import/no-cycle": 0,
+    "import/prefer-default-export": 0,
+    "import/named": 0,
+    "import/namespace": 0,
+    "import/default": 0,
+    "import/no-named-as-default-member": 0,
+    "import/no-named-as-default": 0,
+    "import/no-unused-modules": 0,
+    "import/no-deprecated": 0,
+    "import/no-anonymous-default-export": 2,
+    "react-hooks/rules-of-hooks": 2,
+    "react-hooks/exhaustive-deps": [
+      "error",
+      { "additionalHooks": "(useMemoOne)" }
+    ],
+    "camelcase": 2,
+    "prefer-destructuring": 2,
+    "no-nested-ternary": 2,
+    "comma-dangle": 0
+  }
+}
