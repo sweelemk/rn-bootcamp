@@ -1,5 +1,7 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Text, Alert } from "react-native";
+import { RectButton } from "react-native-gesture-handler";
+import logout from "../../../context/actions/logout";
 import DrawerItem from "./DrawerItem";
 const category = [
   { id: "badge", label: "My badge ID", screen: "UnderConstruction" },
@@ -26,6 +28,27 @@ const DrawerMenu = (props) => {
           {...props}
         />
       ))}
+      <RectButton
+        onPress={() => {
+          props.navigation.toggleDrawer();
+          Alert.alert("Logout", "Are you sure you want to exit?", [
+            {
+              text: "Cancel",
+              onPress: () => {},
+            },
+            {
+              text: "OK",
+              onPress: () => {
+                logout()(props.authDispatch);
+              },
+            },
+          ]);
+        }}
+      >
+        <View>
+          <Text>Logout</Text>
+        </View>
+      </RectButton>
     </View>
   );
 };
