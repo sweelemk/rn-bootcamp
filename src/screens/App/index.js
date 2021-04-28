@@ -5,6 +5,8 @@ import { HomeScreen } from "./HomeScreen";
 import { AboutScreen } from "./AboutScreen";
 import DrawerContent, { DRAWER_WIDTH } from "./Drawer";
 import UnderConstruction from "./UnderConstruction/UnderConstruction";
+import { useContext } from "react/cjs/react.development";
+import { AppContext } from "../../context/Provider";
 
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
@@ -28,12 +30,17 @@ const MainTabNavigator = () => (
   </Tab.Navigator>
 );
 
-export const DrawerNavigator = () => (
-  <Drawer.Navigator
-    drawerContent={(props) => <DrawerContent {...props} />}
-    drawerStyle={{ width: DRAWER_WIDTH, paddingHorizontal: 20 }}
-  >
-    <Drawer.Screen name="Home" component={MainTabNavigator} />
-    <Drawer.Screen name="UnderConstruction" component={UnderConstruction} />
-  </Drawer.Navigator>
-);
+export const DrawerNavigator = () => {
+  const { authDispatch } = useContext(AppContext);
+  return (
+    <Drawer.Navigator
+      drawerContent={(props) => (
+        <DrawerContent {...props} authDispatch={authDispatch} />
+      )}
+      drawerStyle={{ width: DRAWER_WIDTH, paddingHorizontal: 20 }}
+    >
+      <Drawer.Screen name="Home" component={MainTabNavigator} />
+      <Drawer.Screen name="UnderConstruction" component={UnderConstruction} />
+    </Drawer.Navigator>
+  );
+};
