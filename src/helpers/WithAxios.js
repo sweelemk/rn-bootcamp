@@ -12,10 +12,9 @@ const WithAxios = ({ children }) => {
       (config) => {
         if (data.token) {
           config.headers.Authorization = `Bearer ${data.token}`;
+        } else {
+          delete axiosInstance.defaults.headers.common["Authorization"];
         }
-        // else {
-        //   delete axiosInstance.defaults.headers.common["Authorization"];
-        // }
         return config;
       },
       (error) => {
