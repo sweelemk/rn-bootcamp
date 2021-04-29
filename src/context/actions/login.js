@@ -1,24 +1,30 @@
-import { LOGIN_LOADING, LOGIN_SUCCESS, LOGIN_FAIL } from "./actionTypes";
-import axiosInstance from "../../helpers/axiosInterceptor";
-import { FAKE_TOKEN } from "../../utils/constants";
+import { LOGIN_LOADING, LOGIN_SUCCESS, LOGIN_FAIL, CLEAR } from "./actionTypes";
+import * as LoginController from "../controllers/login-controller";
 
-export default ({ memberId, password }) => (dispatch) => {
-  dispatch(LOGIN_LOADING);
-  axiosInstance
-    .post("login", {
+export const login = ({ memberId, password }) => async (dispatch) => {
+  dispatch({
+    type: LOGIN_LOADING,
+  });
+  try {
+    const credentials = await LoginController.loadCredentials(
       memberId,
-      password,
-    })
-    .then((res) => {
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      dispatch({
-        type: LOGIN_FAIL,
-        payload: err.data.error,
-      });
+      password
+    );
+    console.log(credentials);
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: credentials,
     });
+  } catch (err) {
+    dispatch({
+      type: LOGIN_FAIL,
+      payload: err.response.data,
+    });
+  }
+};
+
+export const clear = () => (dispatch) => {
+  dispatch({
+    type: CLEAR,
+  });
 };

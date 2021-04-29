@@ -6,7 +6,7 @@ import * as Font from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
 import Constants from "expo-constants";
 
-const NAVIGATION_STATE_KEY = `NAVIGATION_STATE_KEY-${Constants.manifest.sdkVersion}`;
+const NAVIGATION_STATE_KEY = `NAVIGATION_STATE_KEYS-${Constants.manifest.sdkVersion}`;
 
 const usePromiseAll = (promises, cb) =>
   useEffect(() => {
