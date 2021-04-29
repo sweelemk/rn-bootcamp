@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-const HomeScreen = () => {
+const BadgeScreen = () => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Home Screen</Text>
+      <Text>Badge ID Screen</Text>
     </View>
   );
 };
 
-export default HomeScreen;
+export default BadgeScreen;

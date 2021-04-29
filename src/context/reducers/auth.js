@@ -3,6 +3,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  CLEAR,
 } from "../actions/actionTypes";
 import initialState from "../initialState/authState";
 
@@ -27,6 +28,11 @@ const auth = (state, { type, payload }) => {
         error: payload,
       };
     case LOGOUT:
+      return {
+        ...state,
+        ...initialState,
+      };
+    case CLEAR:
       return {
         ...state,
         ...initialState,
