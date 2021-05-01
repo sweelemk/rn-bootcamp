@@ -7,7 +7,6 @@ import {
   Platform,
   Keyboard,
 } from "react-native";
-import { RectButton } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Button, Input, Logo, Message } from "../../../components";
 import { login, clear } from "../../../context/actions/login";
@@ -17,7 +16,7 @@ import styles from "./SignIn.styles";
 
 const SignIn = ({ navigation }) => {
   const password = useRef(null);
-  const { authDispatch, authState } = useContext(AppContext);
+  const { authDispatch, authState, userState } = useContext(AppContext);
   const [form, setForm] = useState({});
   const onChange = ({ name, value }) => {
     setForm({ ...form, [name]: value });
@@ -79,6 +78,7 @@ const SignIn = ({ navigation }) => {
                 placeholder="Enter password"
                 secureTextEntry
                 name="password"
+                onSubmitEditing={onSubmit}
               />
               <Button
                 title="Sign In"

@@ -9,11 +9,15 @@ import { BadgeScreen } from "./BadgeScreen";
 const Drawer = createDrawerNavigator();
 
 export const DrawerNavigator = () => {
-  const { authDispatch } = useContext(AppContext);
+  const { authDispatch, userDispatch } = useContext(AppContext);
   return (
     <Drawer.Navigator
       drawerContent={(props) => (
-        <DrawerContent {...props} authDispatch={authDispatch} />
+        <DrawerContent
+          {...props}
+          authDispatch={authDispatch}
+          userDispatch={userDispatch}
+        />
       )}
       drawerStyle={{ width: DRAWER_WIDTH, paddingHorizontal: 20 }}
     >
