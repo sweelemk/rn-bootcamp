@@ -10,7 +10,6 @@ export const login = ({ memberId, password }) => async (dispatch) => {
       memberId,
       password
     );
-    console.log(credentials);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: credentials,

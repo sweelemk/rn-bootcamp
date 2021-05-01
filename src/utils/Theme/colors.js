@@ -10,4 +10,6 @@ export default {
   white: "#ffffff",
   bgColor: "#f7fff7",
   disabled: "#9997aa",
+  black: "#000",
+  black20: "rgba(0,0,0,0.2)",
 };

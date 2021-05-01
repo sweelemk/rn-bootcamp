@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Alert } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import logout from "../../../context/actions/logout";
+import { clearUser } from "../../../context/actions/user";
 import DrawerItem from "./DrawerItem";
 const category = [
   { id: "badge", label: "My badge ID", screen: "UnderConstruction" },
@@ -40,6 +41,7 @@ const DrawerMenu = (props) => {
               text: "OK",
               onPress: () => {
                 logout()(props.authDispatch);
+                clearUser()(props.userDispatch);
               },
             },
           ]);
