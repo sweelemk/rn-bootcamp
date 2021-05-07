@@ -1,4 +1,5 @@
 import React from "react";
+import { StatusBar } from "react-native";
 import { enableScreens } from "react-native-screens";
 import AppContextProvider from "./src/context/Provider";
 import WithAxios from "./src/helpers/WithAxios";
@@ -16,6 +17,7 @@ enableScreens();
 function App() {
   return (
     <LoadAssets {...{ fonts }}>
+      <StatusBar barStyle="dark-content" />
       <AppContextProvider>
         <WithAxios>
           <Navigation />

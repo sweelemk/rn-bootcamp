@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AuthenticaionNavigator } from "../screens/Auth";
-import { DrawerNavigator } from "../screens/App";
+import { StackNavigator } from "../screens/App";
 import { AppContext } from "../context/Provider";
 
 const Navigation = () => {
@@ -11,7 +11,7 @@ const Navigation = () => {
   } = state;
   return (
     <SafeAreaProvider>
-      {isLoggedIn ? <DrawerNavigator /> : <AuthenticaionNavigator />}
+      {isLoggedIn ? <StackNavigator /> : <AuthenticaionNavigator />}
     </SafeAreaProvider>
   );
 };
