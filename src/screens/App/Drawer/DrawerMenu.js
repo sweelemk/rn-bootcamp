@@ -5,16 +5,16 @@ import logout from "../../../context/actions/logout";
 import { clearUser } from "../../../context/actions/user";
 import DrawerItem from "./DrawerItem";
 const category = [
-  { id: "badge", label: "My badge ID", screen: "UnderConstruction" },
+  { id: "badge", label: "My badge ID", screen: "BadgeIdScreen" },
   {
     id: "history",
     label: "Book history",
-    screen: "UnderConstruction",
+    screen: "BookHistoryScreen",
   },
   {
     id: "libraries",
     label: "Look for libraries",
-    screen: "UnderConstruction",
+    screen: "LibraryScreen",
   },
 ];
 
