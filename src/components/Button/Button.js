@@ -16,7 +16,7 @@ const Button = ({ type, title, loading, disabled, onPress, ...props }) => {
     }
 
     if (props.secondary) {
-      return colors.secondary;
+      return theme.colors.color5;
     }
   };
   return (
@@ -42,7 +42,7 @@ const Button = ({ type, title, loading, disabled, onPress, ...props }) => {
         >
           {loading && (
             <ActivityIndicator
-              color={props.primary ? colors.white : colors.primary}
+              color={props.primary ? theme.colors.white : theme.colors.color5}
             />
           )}
           {title && (
@@ -50,7 +50,9 @@ const Button = ({ type, title, loading, disabled, onPress, ...props }) => {
               variant="text"
               style={[
                 {
-                  color: disabled ? "rgba(255,255,255, 0.6)" : colors.white,
+                  color: disabled
+                    ? "rgba(255,255,255, 0.6)"
+                    : theme.colors.white,
                   paddingLeft: loading ? 8 : 0,
                 },
               ]}
