@@ -12,12 +12,10 @@ export const getUser = (userId) => async (dispatch) => {
   });
   try {
     const user = await UserController.loadUser(userId);
-    setTimeout(() => {
-      dispatch({
-        type: USER_SUCCESS,
-        payload: user,
-      });
-    }, 2000);
+    dispatch({
+      type: USER_SUCCESS,
+      payload: user,
+    });
   } catch (err) {
     dispatch({
       type: USER_FAIL,

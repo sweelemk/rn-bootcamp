@@ -1,22 +1,18 @@
 import React, { useContext, useRef, useState } from "react";
 import {
-  View,
-  Text,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Platform,
   Keyboard,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Button, Input, Logo, Message } from "../../../components";
+import { Box, Text } from "../../../utils";
+import { Button, Input, Logo, Message, Page } from "../../../components";
 import { login, clear } from "../../../context/actions/login";
 import { AppContext } from "../../../context/Provider";
-import { colors } from "../../../utils/Theme";
-import styles from "./SignIn.styles";
 
-const SignIn = ({ navigation }) => {
+const SignIn = () => {
   const password = useRef(null);
-  const { authDispatch, authState, userState } = useContext(AppContext);
+  const { authDispatch, authState } = useContext(AppContext);
   const [form, setForm] = useState({});
   const onChange = ({ name, value }) => {
     setForm({ ...form, [name]: value });
@@ -25,7 +21,7 @@ const SignIn = ({ navigation }) => {
     login(form)(authDispatch);
   };
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: colors.bgColor }}>
+    <Page paddingTop="xxl">
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{
@@ -33,20 +29,15 @@ const SignIn = ({ navigation }) => {
         }}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View
-            style={{
-              paddingHorizontal: 20,
-              flex: 1,
-            }}
-          >
-            <View style={styles.logoContainer}>
+          <Box paddingHorizontal="m" flex={1}>
+            <Box marginTop="xl" justifyContent="center">
               <Logo />
-            </View>
-            <View style={styles.heroContainer}>
-              <Text style={styles.header}>Welcome Back,</Text>
-              <Text style={styles.subHeader}>sign in to continue</Text>
-            </View>
-            <View style={styles.formContainer}>
+            </Box>
+            <Box flex={1} marginTop="m">
+              <Text variant="screenTitle">Welcome Back,</Text>
+              <Text variant="text">sign in to continue</Text>
+            </Box>
+            <Box flex={5}>
               {authState.error?.error && (
                 <Message
                   message={authState.error.error}
@@ -56,45 +47,52 @@ const SignIn = ({ navigation }) => {
                   }}
                 />
               )}
-              <Input
-                label="Member ID"
-                onChangeText={(value) => onChange({ name: "memberId", value })}
-                placeholder="Enter member ID"
-                name="memberId"
-                autoCapitalize="none"
-                returnKeyType="next"
-                returnKeyLabel="Next"
-                onSubmitEditing={() => password.current?.focus()}
-                autoCompleteType={"off"}
-                autoCorrect={false}
-              />
-              <Input
-                ref={password}
-                label="Password"
-                onChangeText={(value) => onChange({ name: "password", value })}
-                autoCapitalize="none"
-                returnKeyType="go"
-                returnKeyLabel="go"
-                placeholder="Enter password"
-                secureTextEntry
-                name="password"
-                onSubmitEditing={onSubmit}
-              />
-              <Button
-                title="Sign In"
-                primary
-                style={{
-                  marginTop: 12,
-                }}
-                loading={authState.loading}
-                disabled={authState.loading}
-                onPress={onSubmit}
-              />
-            </View>
-          </View>
+              <Box marginBottom="m">
+                <Input
+                  label="Member ID"
+                  onChangeText={(value) =>
+                    onChange({ name: "memberId", value })
+                  }
+                  placeholder="Enter member ID"
+                  name="memberId"
+                  autoCapitalize="none"
+                  returnKeyType="next"
+                  returnKeyLabel="Next"
+                  onSubmitEditing={() => password.current?.focus()}
+                  autoCompleteType={"off"}
+                  autoCorrect={false}
+                />
+              </Box>
+              <Box marginBottom="l">
+                <Input
+                  ref={password}
+                  label="Password"
+                  onChangeText={(value) =>
+                    onChange({ name: "password", value })
+                  }
+                  autoCapitalize="none"
+                  returnKeyType="go"
+                  returnKeyLabel="go"
+                  placeholder="Enter password"
+                  secureTextEntry
+                  name="password"
+                  onSubmitEditing={onSubmit}
+                />
+              </Box>
+              <Box>
+                <Button
+                  title="Sign In"
+                  primary
+                  loading={authState.loading}
+                  disabled={authState.loading}
+                  onPress={onSubmit}
+                />
+              </Box>
+            </Box>
+          </Box>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </Page>
   );
 };
 

@@ -1,6 +1,8 @@
 import React from "react";
 import { StatusBar } from "react-native";
 import { enableScreens } from "react-native-screens";
+import { ThemeProvider } from "@shopify/restyle";
+import { theme, Box } from "./src/utils";
 import AppContextProvider from "./src/context/Provider";
 import WithAxios from "./src/helpers/WithAxios";
 import Navigation from "./src/navigation";
@@ -16,14 +18,18 @@ enableScreens();
 
 function App() {
   return (
-    <LoadAssets {...{ fonts }}>
-      <StatusBar barStyle="dark-content" />
-      <AppContextProvider>
-        <WithAxios>
-          <Navigation />
-        </WithAxios>
-      </AppContextProvider>
-    </LoadAssets>
+    <ThemeProvider theme={theme}>
+      <Box flex={1}>
+        <LoadAssets {...{ fonts }}>
+          <StatusBar barStyle="light-content" />
+          <AppContextProvider>
+            <WithAxios>
+              <Navigation />
+            </WithAxios>
+          </AppContextProvider>
+        </LoadAssets>
+      </Box>
+    </ThemeProvider>
   );
 }
 

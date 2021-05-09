@@ -1,14 +1,13 @@
 import React from "react";
-import { View, Text } from "react-native";
-import styles from "./Logo.styles";
+import { Box, Text } from "../../utils";
 
 const Logo = () => {
   return (
-    <View>
-      <Text style={styles.mainText}>
-        Bootcamp<Text style={styles.secondaryText}>Library</Text>
+    <Box>
+      <Text variant="textHero">
+        Bootcamp<Text color="coral">Library</Text>
       </Text>
-    </View>
+    </Box>
   );
 };
 export default Logo;

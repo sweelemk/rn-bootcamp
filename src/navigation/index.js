@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AuthenticaionNavigator } from "../screens/Auth";
 import { StackNavigator } from "../screens/App";
 import { AppContext } from "../context/Provider";
@@ -9,11 +8,7 @@ const Navigation = () => {
   const {
     authState: { isLoggedIn },
   } = state;
-  return (
-    <SafeAreaProvider>
-      {isLoggedIn ? <StackNavigator /> : <AuthenticaionNavigator />}
-    </SafeAreaProvider>
-  );
+  return <>{isLoggedIn ? <StackNavigator /> : <AuthenticaionNavigator />}</>;
 };
 
 export default Navigation;
