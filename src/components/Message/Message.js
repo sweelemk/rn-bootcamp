@@ -1,23 +1,23 @@
 import React, { useState } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { SimpleLineIcons } from "react-native-vector-icons";
-import { colors } from "../../utils/Theme";
-import styles from "./Message.styles";
+import { Box, Text, useTheme } from "../../utils";
 
 const Message = ({ message, retry, retryFn, onPress, onDismiss, ...props }) => {
+  const theme = useTheme();
   const [userDismissed, setUserDismissed] = useState(false);
   const getBGColor = () => {
     if (props.primary) {
-      return colors.primary;
+      return theme.colors.color5;
     }
     if (props.danger) {
-      return colors.danger;
+      return theme.colors.danger;
     }
     if (props.success) {
-      return colors.success;
+      return theme.colors.success;
     }
     if (props.info) {
-      return colors.info;
+      return theme.colors.info;
     }
   };
   const handleDismiss = () => {
@@ -26,24 +26,28 @@ const Message = ({ message, retry, retryFn, onPress, onDismiss, ...props }) => {
   return (
     <>
       {!userDismissed && (
-        <View>
-          <View
+        <Box>
+          <Box
+            height={42}
+            justifyContent="space-evenly"
+            borderRadius="s"
+            paddingHorizontal="m"
+            marginBottom="m"
             style={[
-              styles.buttonContainer,
               {
                 backgroundColor: getBGColor(),
               },
               props.style,
             ]}
           >
-            <View
+            <Box
               style={{
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
               }}
             >
-              {message && <Text style={[styles.buttonText]}>{message}</Text>}
+              {message && <Text variant="text">{message}</Text>}
               {retry && (
                 <TouchableOpacity onPress={retryFn}>
                   <SimpleLineIcons name="reload" size={16} color="white" />
@@ -59,9 +63,9 @@ const Message = ({ message, retry, retryFn, onPress, onDismiss, ...props }) => {
                   <SimpleLineIcons name="close" size={16} color="white" />
                 </TouchableOpacity>
               )}
-            </View>
-          </View>
-        </View>
+            </Box>
+          </Box>
+        </Box>
       )}
     </>
   );

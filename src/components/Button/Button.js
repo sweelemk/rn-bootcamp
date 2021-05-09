@@ -1,18 +1,18 @@
 import React from "react";
-import { TouchableOpacity, View, Text, ActivityIndicator } from "react-native";
-import { colors } from "../../utils/Theme";
-import styles from "./Button.styles";
+import { TouchableOpacity, ActivityIndicator } from "react-native";
+import { Box, Text, useTheme } from "../../utils";
 
 const Button = ({ type, title, loading, disabled, onPress, ...props }) => {
+  const theme = useTheme();
   const getBGColor = () => {
     if (disabled) {
-      return colors.disabled;
+      return theme.colors.color5;
     }
     if (props.primary) {
-      return colors.primary;
+      return theme.colors.coral;
     }
     if (props.danger) {
-      return colors.danger;
+      return theme.colors.danger;
     }
 
     if (props.secondary) {
@@ -20,20 +20,26 @@ const Button = ({ type, title, loading, disabled, onPress, ...props }) => {
     }
   };
   return (
-    <View>
+    <Box>
       <TouchableOpacity
         activeOpacity={0.9}
         onPress={onPress}
         disabled={disabled}
-        style={[
-          styles.buttonContainer,
-          {
-            backgroundColor: getBGColor(),
-          },
-          props.style,
-        ]}
       >
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <Box
+          flexDirection="row"
+          height={42}
+          justifyContent="center"
+          alignItems="center"
+          disabled={disabled}
+          borderRadius="m"
+          style={[
+            {
+              backgroundColor: getBGColor(),
+            },
+            props.style,
+          ]}
+        >
           {loading && (
             <ActivityIndicator
               color={props.primary ? colors.white : colors.primary}
@@ -41,8 +47,8 @@ const Button = ({ type, title, loading, disabled, onPress, ...props }) => {
           )}
           {title && (
             <Text
+              variant="text"
               style={[
-                styles.buttonText,
                 {
                   color: disabled ? "rgba(255,255,255, 0.6)" : colors.white,
                   paddingLeft: loading ? 8 : 0,
@@ -52,9 +58,9 @@ const Button = ({ type, title, loading, disabled, onPress, ...props }) => {
               {title}
             </Text>
           )}
-        </View>
+        </Box>
       </TouchableOpacity>
-    </View>
+    </Box>
   );
 };
 export default Button;

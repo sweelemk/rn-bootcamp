@@ -1,27 +1,45 @@
 import React, { useState, forwardRef } from "react";
-import { TextInput, View, Text } from "react-native";
-import { colors } from "../../utils/Theme";
-import styles from "./Input.styles";
+import { TextInput } from "react-native";
+import { Text, Box, useTheme } from "../../utils";
 
 const Input = forwardRef(
   ({ onchangeText, value, style, label, error, ...props }, ref) => {
+    const theme = useTheme();
     const [focused, setFocused] = useState();
     const getBorder = () => {
       if (focused) {
-        return colors.primary;
+        return theme.colors.color5;
       }
       if (error) {
-        return colors.danger;
+        return theme.colors.danger;
       } else {
-        return colors.darkGrey;
+        return theme.colors.color5;
       }
     };
     return (
-      <View style={styles.inputContainer}>
-        {label && <Text style={styles.label}>{label}</Text>}
-        <View style={[styles.inputWrapper, { borderColor: getBorder() }]}>
+      <Box>
+        {label && (
+          <Text variant="text" marginBottom="s">
+            {label}
+          </Text>
+        )}
+        <Box
+          height={42}
+          borderWidth={1}
+          borderStyle="solid"
+          borderRadius="m"
+          style={{ borderColor: getBorder() }}
+        >
           <TextInput
-            style={[styles.textInput, style]}
+            style={[
+              {
+                flex: 1,
+                paddingHorizontal: theme.spacing.m - 2,
+                fontFamily: theme.font.fontFamily.Poppins.Light,
+                color: theme.colors.white,
+              },
+              style,
+            ]}
             value={value}
             onChange={onchangeText}
             onFocus={() => setFocused(true)}
@@ -29,9 +47,13 @@ const Input = forwardRef(
             {...{ ref }}
             {...props}
           />
-        </View>
-        {error && <Text style={styles.error}>{error}</Text>}
-      </View>
+        </Box>
+        {error && (
+          <Box paddingVertical="xs">
+            <Text variant="error">{error}</Text>
+          </Box>
+        )}
+      </Box>
     );
   }
 );
