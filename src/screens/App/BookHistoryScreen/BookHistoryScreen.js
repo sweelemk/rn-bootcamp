@@ -40,13 +40,12 @@ const BookScreen = () => {
     );
   };
   return (
-    <Page loading={loading}>
+    <Page loading={loading} title="Book history">
       <FlatList
         data={data}
         keyExtractor={(item) => item.isbn}
         contentContainerStyle={{
-          paddingHorizontal: 20,
-          paddingTop: 12,
+          padding: 16,
         }}
         renderItem={renderData}
       />

@@ -24,6 +24,7 @@ export const DrawerNavigator = () => {
         />
       )}
       drawerStyle={{ width: DRAWER_WIDTH }}
+      initialRouteName="BadgeIdScreen"
     >
       <Drawer.Screen name="BadgeIdScreen" component={BadgeScreen} />
       <Drawer.Screen name="BookHistoryScreen" component={BookHistoryScreen} />
@@ -34,7 +35,7 @@ export const DrawerNavigator = () => {
 
 export const StackNavigator = () => {
   return (
-    <Stack.Navigator headerMode="none" mode="modal">
+    <Stack.Navigator headerMode="none" mode="modal" initialRouteName="Drawer">
       <Stack.Screen name="Drawer" component={DrawerNavigator} />
       <Stack.Screen name="Maps" component={Maps} />
     </Stack.Navigator>

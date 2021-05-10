@@ -1,8 +1,9 @@
 import React from "react";
-import { View, Text, Alert } from "react-native";
+import { Alert } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import logout from "../../../context/actions/logout";
 import { clearUser } from "../../../context/actions/user";
+import { Box, Text } from "../../../utils";
 import DrawerItem from "./DrawerItem";
 const category = [
   { id: "badge", label: "My badge ID", screen: "BadgeIdScreen" },
@@ -20,7 +21,7 @@ const category = [
 
 const DrawerMenu = (props) => {
   return (
-    <View>
+    <Box paddingTop="xl">
       {category.map((item) => (
         <DrawerItem
           key={item.id}
@@ -47,11 +48,11 @@ const DrawerMenu = (props) => {
           ]);
         }}
       >
-        <View>
-          <Text>Logout</Text>
-        </View>
+        <Box paddingVertical="m" paddingHorizontal="m">
+          <Text variant="text">Logout</Text>
+        </Box>
       </RectButton>
-    </View>
+    </Box>
   );
 };
 

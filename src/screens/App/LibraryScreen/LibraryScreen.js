@@ -24,7 +24,13 @@ const LibraryScreen = ({ navigation }) => {
             </Text>
           </Box>
           <Box alignItems="flex-end">
-            <TouchableOpacity onPress={() => navigation.navigate("Maps")}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("Maps", {
+                  library: item,
+                })
+              }
+            >
               <Text
                 variant="textSmall"
                 style={{
@@ -40,13 +46,12 @@ const LibraryScreen = ({ navigation }) => {
     );
   };
   return (
-    <Page loading={loading}>
+    <Page loading={loading} title="Look for libraries">
       <FlatList
         data={data}
         keyExtractor={(item) => item.isbn}
         contentContainerStyle={{
-          paddingHorizontal: 20,
-          paddingTop: 12,
+          padding: 16,
         }}
         renderItem={renderData}
       />

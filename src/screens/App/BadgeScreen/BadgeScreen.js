@@ -43,7 +43,7 @@ const BadgeScreen = () => {
   };
 
   return (
-    <Page loading={loading}>
+    <Page loading={loading} title="Profile">
       <ScrollView
         contentContainerStyle={{
           flex: 1,
