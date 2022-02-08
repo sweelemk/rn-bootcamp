@@ -1,2 +1,2 @@
 # rn-bootcamp
-- [] test
+ - [] Checkbox not checked
